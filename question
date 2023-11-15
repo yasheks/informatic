@@ -3,56 +3,65 @@
 using namespace std;
 int main()
 {
-    int k, n;
+    int k, n, n2;
+    bool minus = true;
     long long bin = 0, multi = 1;
-    string result;
+    string result = "";
     cout << "Enter the bits and number: ";
     cin >> k >> n;
+    n2 = n;
     if (k < 0) {
         cout << "Error";
         return 0;
     }
 
-    if (n >= 0) {
+    if (n <= 0){
+        n = -n;
+        minus = false;
+
+    }
         while (n != 0) {
             long long digit = n % 2;
             bin += digit * multi;
-            multi *= 10;  
+            multi *= 10;
             n /= 2;
         }
-        string binary = to_string(bin); 
-        for (int i = 0; i < k; i++)
-        {
-            result = binary.back() + result;
-            binary.pop_back();  
-            if (binary.empty()) break;
+        n = n2;
+        string binary = to_string(bin);
+
+        if (k < n){
+            for (int i = binary.size(); i != 0; i--)
+            {
+                result += binary[i];
+
+            }
+
+            if (k < n)
+            {
+                string revers;
+                for (int i = result.size() - 1; i > 0; i--)
+                {
+                    revers += result[i];
+                }
+                result = revers;
+            }
         }
-        while (result.size() < k)
-        {
-            result = "0" + result;
+        else {
+            for (int i = 0; i != k; i++)
+            {
+                if (binary[i] == '\0') break;
+                result += binary[i];
+
+            }
+            while (result.size() < k)
+            {
+                result = "0" + result;
+            }
+
         }
+        if (minus == true)
         cout << result;
-    }
-    else {
-        n = -n;
-        while (n != 0) {
-            long long digit = n % 2;
-            bin += (digit ^ 1) * multi; 
-            multi *= 10; 
-            n /= 2;
-        }
-        string binary = to_string(bin); 
-        for (int i = 0; i < k; i++)
-        {
-            result = binary.back() + result;
-            binary.pop_back();  
-            if (binary.empty()) break;
-        }
-        while (result.size() < k)
-        {
-            result = "1" + result;
-        }
-        cout << result;
-    }
-    return 0;
+        else
+            cout << "potom";
+
 }
