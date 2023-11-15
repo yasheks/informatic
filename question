@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -13,45 +12,47 @@ int main()
         cout << "Error";
         return 0;
     }
-    
+
     if (n >= 0) {
         while (n != 0) {
             long long digit = n % 2;
             bin += digit * multi;
-            multi *= 10;
+            multi *= 10;  
             n /= 2;
         }
-        string binary = to_string(bin);
+        string binary = to_string(bin); 
         for (int i = 0; i < k; i++)
         {
-            result += binary[i];
-            if (binary[i] == '/0')break;
+            result = binary.back() + result;
+            binary.pop_back();  
+            if (binary.empty()) break;
         }
-        if (result.size() < k)
+        while (result.size() < k)
         {
-            string nool;
-            int len = k - result.size();
-            for (int j = 0; j < len+1;j++)
-            {
-                nool += "0";
-            }
-            cout << nool << result;
-            return 0;
+            result = "0" + result;
         }
         cout << result;
-        return 0;
     }
     else {
         n = -n;
-        int digit = n % 2;
-        bin += digit * multi;
-        multi *= 10;
-        n /= 2;
-        string bin;
-        for (int i=0; i != '/0'; i++) {
-            if (bin[i] == 1) bin[i] = 0;
-            else bin[i] = 1;
+        while (n != 0) {
+            long long digit = n % 2;
+            bin += (digit ^ 1) * multi; 
+            multi *= 10; 
+            n /= 2;
         }
+        string binary = to_string(bin); 
+        for (int i = 0; i < k; i++)
+        {
+            result = binary.back() + result;
+            binary.pop_back();  
+            if (binary.empty()) break;
+        }
+        while (result.size() < k)
+        {
+            result = "1" + result;
+        }
+        cout << result;
     }
+    return 0;
 }
-
