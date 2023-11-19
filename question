@@ -61,7 +61,25 @@ int main()
         }
         if (minus == true)
         cout << result;
-        else
-            cout << "potom";
+        else{
+           for (int i = 0; i < result.size(); i++)
+           {
+               if (result[i] == '1') result[i] = '0';
+               else result [i] = '1';
+
+           }
+           for (int j = 0; j < result.size(); j++)
+           {
+               if (result[j] == '1') result[j] = '0';
+               else
+                {
+                result [j] = '1';
+               cout << result;
+               return 0;
+               }
+
+           }
+           cout << result;
+        }
 
 }
