@@ -15,71 +15,71 @@ int main()
         return 0;
     }
 
-    if (n <= 0){
+    if (n <= 0) {
         n = -n;
         minus = false;
 
     }
-        while (n != 0) {
-            long long digit = n % 2;
-            bin += digit * multi;
-            multi *= 10;
-            n /= 2;
-        }
-        n = n2;
-        string binary = to_string(bin);
+    while (n != 0) {
+        long long digit = n % 2;
+        bin += digit * multi;
+        multi *= 10;
+        n /= 2;
+    }
+    n = n2;
+    string binary = to_string(bin);
 
-        if (k < n){
-            for (int i = binary.size(); i != 0; i--)
-            {
-                result += binary[i];
-
-            }
-
-            if (k < n)
-            {
-                string revers;
-                for (int i = result.size() - 1; i > 0; i--)
-                {
-                    revers += result[i];
-                }
-                result = revers;
-            }
-        }
-        else {
-            for (int i = 0; i != k; i++)
-            {
-                if (binary[i] == '\0') break;
-                result += binary[i];
-
-            }
-            while (result.size() < k)
-            {
-                result = "0" + result;
-            }
+    if (k < n) {
+        for (int i = binary.size(); i != 0; i--)
+        {
+            result += binary[i];
 
         }
-        if (minus == true)
+
+        if (k < n)
+        {
+            string revers;
+            for (int i = result.size() - 1; i > 0; i--)
+            {
+                revers += result[i];
+            }
+            result = revers;
+        }
+    }
+    else {
+        for (int i = 0; i != k; i++)
+        {
+            if (binary[i] == '\0') break;
+            result += binary[i];
+
+        }
+        while (result.size() < k)
+        {
+            result = "0" + result;
+        }
+
+    }
+    if (minus == true)
         cout << result;
-        else{
-           for (int i = 0; i < result.size(); i++)
-           {
-               if (result[i] == '1') result[i] = '0';
-               else result [i] = '1';
+    else {
+        for (int i = 0; i < result.size(); i++)
+        {
+            if (result[i] == '1') result[i] = '0';
+            else result[i] = '1';
 
-           }
-           for (int j = 0; j < result.size(); j++)
-           {
-               if (result[j] == '1') result[j] = '0';
-               else
-                {
-                result [j] = '1';
-               cout << result;
-               return 0;
-               }
-
-           }
-           cout << result;
         }
+        for (int j = result.size() -1; j > 0; j--)
+        {
+            if (result[j] == '1') result[j] = '0';
+            else
+            {
+                result[j] = '1';
+                cout << result;
+                return 0;
+            }
+
+        }
+        cout << result;
+    }
 
 }
