@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    cout << "привет, это Калькулятор больших вещественных чисел, сначала напиши двоичное число с которым хочешь совершить операцию" << endl;
+    string first, second, result, maxi, mini;
+    bool carry = 0;
+    cin >> first;
+    if (first[0] != '1' && first[0] != '0')
+    {
+        cout << "ОШИБКА" << endl <<"вводите только двоичное число" << endl;
+        return 0;
+    }
+    cout << "теперь выбери что хочешь сделать с этим числом" << endl << "[1] - сложить" << endl << "[2] - вычесть" << endl << "[3] - умножить" << endl;
+    int choose;
+    cin >> choose;
+    if (choose == 1)
+    {
+        cout << "теперь можно написать второе число, которое ты хочешь сложить: ";
+        cin >> second;
+        if (second[0] != '1' && second[0] != '0')
+        {
+            cout << "ОШИБКА" << endl <<"вводите только двоичное число" << endl;
+            return 0;
+        }
+
+        size_t len1 = first.size();
+        size_t len2 = second.size();
+        if(len1 > len2) {
+            second = string(len1 - len2, '0') + second;
+        } else {
+            first = string(len2 - len1, '0') + first;
+        }
+
+        for (int i = first.size() - 1; i >= 0; --i) {
+            int bit1 = first[i] - '0';
+            int bit2 = second[i] - '0';
+            int sum = bit1 + bit2 + carry;
+            result = to_string(sum % 2) + result;
+            carry = sum / 2;
+        }
+
+        if (carry) {
+            result = '1' + result;
+        }
+
+        cout << "Результат сложения: " << result << endl;
+    }
+
+
+
+    else if (choose = 2)
+    {
+
+    }
+    else if (choose = 3)
+    {
+        cout<<"в разработке";
+    }
+    else if (choose = 4)
+    {
+        cout<<"нет, деления тоже нет, я его даже не писал хд";
+    }
+    else
+    {
+        cout<< "такой опперации нет";
+    }
+
+    return 0;
+}
